@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Pema ❤️</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#1a102b,#3a235f);color:white;overflow-x:hidden;text-align:center}
+.screen{display:none;min-height:100vh;justify-content:center;align-items:center;flex-direction:column;padding:20px}
+.active{display:flex}
+.card{background:rgba(255,255,255,.1);padding:25px;border-radius:20px;backdrop-filter:blur(8px);max-width:700px}
+input,button{padding:12px 16px;border-radius:10px;border:none}
+button{cursor:pointer}
+.star{position:fixed;color:white;opacity:.7;animation:twinkle 2s infinite}
+@keyframes twinkle{50%{opacity:.2}}
+.heart{position:fixed;bottom:-20px;animation:float 8s linear infinite}
+@keyframes float{to{transform:translateY(-110vh)}}
+.cake{width:220px;height:140px;position:relative}
+.layer{height:40px;background:#f6b3d8;margin:4px;border-radius:10px}
+.candle{width:14px;height:60px;background:white;margin:auto;position:relative}
+.flame{width:20px;height:30px;background:orange;border-radius:50%;position:absolute;left:-3px;top:-25px;animation:flicker .2s infinite alternate}
+@keyframes flicker{to{transform:scale(1.15)}}
+.out{opacity:0;transition:1s}
+.photo{max-width:320px;max-height:450px;border-radius:20px;box-shadow:0 0 20px rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
 
+<div id="pw" class="screen active">
+<div class="card">
+<h1>Happy Birthday Pema ❤️</h1>
+<p>Enter the secret password</p>
+<input id="pass" type="password">
+<br><br>
+<button onclick="checkPw()">Open Surprise ✨</button>
+</div>
+</div>
+
+<div id="intro" class="screen">
+<h1>Hey Kaluu ❤️</h1>
+<p>I made something special just for you...</p>
+<button onclick="showCake()">Continue</button>
+</div>
+
+<div id="cakeScreen" class="screen">
+<h2>Make a Wish Maya ✨</h2>
+<div class="candle" onclick="blowCandle()"><div id="flame" class="flame"></div></div>
+<div class="cake">
+<div class="layer"></div><div class="layer"></div><div class="layer"></div>
+</div>
+<p>Blow into the microphone or tap the candle 🕯️</p>
+</div>
+
+<div id="gallery" class="screen">
+<h2>Our Memories ❤️</h2>
+<img id="photo" class="photo" src="pema1.jpg">
+<p id="caption"></p>
+</div>
+
+<div id="letter" class="screen">
+<div class="card">
+<h2>For My Kaluu ❤️</h2>
+<p>Happy birthday to the most amazing girl in my life ❤️<br><br>
+I honestly don’t even know where to start because there are so many things I want to say... These past 3 months with you have been some of the happiest moments for me. Even though it's your birthday, I am the happiest one. It feels like 3 years.<br><br>
+Thank you for coming into my life and making it feel full of love. You deserve to feel loved, appreciated and happy every day. I hope this year brings you everything you wish for.<br><br>
+I love you so muchhh. Happy birthday my Kaluu ❤️<br><br>
+Love,<br>Gon</p>
+<button onclick="finale()">Final Surprise ❤️</button>
+</div>
+</div>
+
+<div id="final" class="screen">
+<h1>Forever My Favorite Person ❤️</h1>
+<h2>Happy Birthday Pema 🎉</h2>
+</div>
+
+<script>
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function checkPw(){if(document.getElementById('pass').value==='2562'){show('intro')}else alert('Wrong password ❤️');}
+function showCake(){show('cakeScreen');startMic();}
+function blowCandle(){document.getElementById('flame').classList.add('out');setTimeout(startMemories,1500);}
+const pics=['pema1.jpg','pema2.jpg','pema3.jpg','pema4.jpg'];
+const texts=['Every moment with you ❤️','Your smile ❤️','My favorite memories ❤️','Happy Birthday Kaluu ❤️'];
+function startMemories(){show('gallery');let i=0;let p=document.getElementById('photo');let c=document.getElementById('caption');function next(){p.src=pics[i];c.textContent=texts[i];i++;if(i<pics.length)setTimeout(next,2500);else setTimeout(()=>show('letter'),3000);}next();}
+function finale(){show('final');}
+function startMic(){navigator.mediaDevices?.getUserMedia({audio:true}).then(s=>{const a=new AudioContext(),m=a.createMediaStreamSource(s),an=a.createAnalyser();m.connect(an);const d=new Uint8Array(an.frequencyBinCount);(function f(){an.getByteFrequencyData(d);let v=d.reduce((x,y)=>x+y,0)/d.length;if(v>70)blowCandle();else requestAnimationFrame(f);})();}).catch(()=>{});}
+for(let i=0;i<60;i++){let s=document.createElement('div');s.className='star';s.textContent='✦';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';document.body.appendChild(s);}
+setInterval(()=>{let h=document.createElement('div');h.className='heart';h.textContent='💜';h.style.left=Math.random()*100+'%';document.body.appendChild(h);setTimeout(()=>h.remove(),8000);},800);
+</script>
+</body>
+</html>
