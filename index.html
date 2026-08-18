@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Pema ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#f8efff,#fff7f3);
+min-height:100vh;
+overflow-x:hidden;
+color:#333;
+}
+
+section{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+}
+
+.active{
+display:flex;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.1);
+max-width:700px;
+width:90%;
+}
+
+.script{
+font-family:'Dancing Script',cursive;
+}
+
+h1{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+input{
+padding:14px;
+width:220px;
+border:none;
+border-radius:12px;
+background:#f1f1f1;
+text-align:center;
+font-size:18px;
+}
+
+button{
+margin-top:15px;
+padding:12px 24px;
+border:none;
+border-radius:12px;
+background:#b788ff;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.cake{
+font-size:150px;
+cursor:pointer;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-10px);
+}
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+width:100%;
+max-width:1000px;
+}
+
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+.letter{
+background:white;
+padding:40px;
+border-radius:25px;
+max-width:800px;
+line-height:1.9;
+box-shadow:0 10px 40px rgba(0,0,0,.1);
+}
+
+.final{
+font-size:4rem;
+}
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+
+<section id="passwordPage" class="active">
+<div class="card">
+<h1 class="script">Happy Birthday Pema ❤️</h1>
+<p>Enter the secret password</p>
+
+<br>
+
+<input type="password" id="password" placeholder="Password">
+
+<br>
+
+<button onclick="checkPassword()">Open Surprise ✨</button>
+</div>
+</section>
+
+<section id="cakePage">
+<h1 class="script">Make A Wish Maya ✨</h1>
+
+<div class="cake" onclick="blowCandle()">🎂</div>
+
+<p style="margin-top:20px;">
+🎤 Blow into your microphone or tap the cake
+</p>
+</section>
+
+<section id="galleryPage">
+<h1 class="script">Our Memories ❤️</h1>
+
+<br>
+
+<div class="gallery">
+<img src="pema1.jpg" alt="">
+<img src="pema2.jpg" alt="">
+<img src="pema3.jpg" alt="">
+<img src="pema4.jpg" alt="">
+</div>
+
+<br>
+
+<button onclick="showLetter()">Read My Letter 💌</button>
+</section>
+
+<section id="letterPage">
+<div class="letter">
+
+<h1 class="script">To My Kaluu ❤️</h1>
+
+<p>
+Happy birthday to the most amazing girl in my life ❤️
+<br><br>
+
+I honestly don't even know where to start because there are so many things I want to say.
+
+These past 3 months with you have been some of the happiest moments for me. Even though it's your birthday, I am the happiest one. It's only been 3 months, but it feels like 3 years.
+
+You have brought so much happiness, comfort, love and care into my life which nobody else ever did, and I am genuinely grateful for it.
+
+Thank you for coming into my life and making my life feel full of love.
+
+You are one year older now. Even though you're old, I'm still gonna marry you okay? 😂❤️
+
+On your birthday I just want you to know how special you are to me and that you deserve to feel loved, appreciated and happy—not just today but every single day.
+
+I hope this new year brings you everything you wish for okay Maya.
+
+I love you so muchhh and hope today reminds you just how loved and special you truly are.
+
+<br><br>
+
+Once again happy birthday my Kaluu ❤️
+
+<br><br>
+
+Love,<br>
+Luis ❤️
+</p>
+
+<br>
+
+<button onclick="showFinal()">Final Surprise ❤️</button>
+
+</div>
+</section>
+
+<section id="finalPage">
+<div class="final script">
+Forever My Favorite Person ❤️
+</div>
+
+<br>
+
+<h2>Happy Birthday Pema 🎉</h2>
+
+<br>
+
+<p>
+Thank you for making my life brighter every day ✨
+</p>
+</section>
+
+<script>
+
+const PASSWORD = "2562";
+
+function showPage(id){
+document.querySelectorAll("section").forEach(page=>{
+page.classList.remove("active");
+});
+document.getElementById(id).classList.add("active");
+}
+
+function checkPassword(){
+
+const entered =
+document.getElementById("password").value;
+
+if(entered === PASSWORD){
+showPage("cakePage");
+startMic();
+}else{
+alert("Wrong password ❤️");
+}
+}
+
+function blowCandle(){
+
+alert("🎉 Happy Birthday Pema ❤️");
+
+showPage("galleryPage");
+}
+
+function showLetter(){
+showPage("letterPage");
+}
+
+function showFinal(){
+showPage("finalPage");
+}
+
+function startMic(){
+
+navigator.mediaDevices.getUserMedia({audio:true})
+.then(stream=>{
+
+const audioContext = new AudioContext();
+
+const mic =
+audioContext.createMediaStreamSource(stream);
+
+const analyser =
+audioContext.createAnalyser();
+
+mic.connect(analyser);
+
+const data =
+new Uint8Array(analyser.frequencyBinCount);
+
+function detect(){
+
+analyser.getByteFrequencyData(data);
+
+let volume =
+data.reduce((a,b)=>a+b,0)/data.length;
+
+if(volume > 70){
+blowCandle();
+return;
+}
+
+requestAnimationFrame(detect);
+}
+
+detect();
+
+})
+.catch(()=>{});
+}
+
+function createHeart(){
+
+const heart =
+document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💜";
+
+heart.style.left =
+Math.random()*100+"%";
+
+heart.style.animationDuration =
+(5 + Math.random()*5)+"s";
+
+document.querySelector(".hearts")
+.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+}
+
+setInterval(createHeart,700);
+
+</script>
+
+</body>
+</html>
